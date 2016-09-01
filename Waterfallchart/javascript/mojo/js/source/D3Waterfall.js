@@ -7,6 +7,7 @@ mstrmojo.requiresCls(
 	"mstrmojo.CustomVisBase",
 	"mstrmojo.models.template.DataInterface"
 );
+
 var continuous = false, total = false, lineFlag = false;
 
 function toBoolean(str) {
@@ -44,10 +45,8 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 			var metricOnly = is10point4 ? this.zonesModel.getDropZones().zones[ZONE_ATTRIBUTE_INDEX].items.length==0 : false;
 			var is10point2 = ! typeof this.addThresholdMenuItem == 'function'; //True if we are using MSTR 10.2
 
-
-
-			//************* Process data retreived from the API
-// Get the selected data
+//************* Process data retreived from the API
+			// Get the selected data
 			var dataConfig = {hasSelection: true};
 			if (!is10point2) {
 				dataConfig.hasThreshold = true;
@@ -66,7 +65,7 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 				this.addThresholdMenuItem();
 
 				this.setDefaultPropertyValues({
-					continuousMode: metricOnly ? 'true' : this.getProperty("continuousMode") ? this.getProperty("continuousMode").toString() : 'false',
+					continuousMode: metricOnly ? 'true' : this.getProperty("continuousMode") ? this.getProperty("continuousMode").toString() : 'true',
 					showTotals: this.getProperty("showTotals") ? this.getProperty("showTotals").toString() : 'false',
 					showLine: this.getProperty("showLine") ? this.getProperty("showLine").toString() : 'true',
 					totalsColor: {
@@ -76,7 +75,6 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 			}
 
 			//to maintain persistence after save and load
-
 			if (!is10point2) {
 				if (this.getProperty("showTotals")) {
 					total = toBoolean(this.getProperty("showTotals").toString());
@@ -101,18 +99,17 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 				width = total_width - margin.left - margin.right - 20 - yaxiswidth,// -20 is to avoid having a scrolling mode by defaut
 				height = total_height - margin.top - margin.bottom - 20;// -20 is to avoid having a scrolling mode by defaut
 			var colors = {positive: "#8CB400", negative: "#ff0000", total: totalsColor};
-			var transitionDuration = 850;// Duration of the animations
+			var transitionDuration = 1;// Duration of the animations
 			var me = this;
 			var VIformat = this.defn.fmts;
 			var percentage_witdh_path_x_axis = 0.95;
 
 
-// Enable the "use as selector" option on the visualization menu
+			// Enable the "use as selector" option on the visualization menu
 			this.addUseAsFilterMenuItem();
 
 //  **************************  Functions
-
-// Get the max metric value of a data set
+			// Get the max metric value of a data set
 			var getMaxValue = function (borders) {
 				var maxValue = 0;
 				for (j = 0; j < borders.length; j++) {
@@ -123,7 +120,7 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 				return maxValue;
 			};
 
-// Get the min metric value of a data set
+			// Get the min metric value of a data set
 			var getMinValue = function (borders) {
 				var minValue = 0;
 				for (j = 0; j < borders.length; j++) {
@@ -134,7 +131,7 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 				return minValue;
 			};
 
-// Create the an array with the base value (where to start) and the value of the bar (the height of the bar)
+			// Create an array with the base value (where to start) and the value of the bar (the height of the bar)
 			var getBarBorders = function (data) {
 				var borders = [], k = 0, last = 0, minValue = 0;
 				for (j = 0; j < dataS.length; j++) {
@@ -154,7 +151,7 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 				return borders;
 			};
 
-// Retrieve the metrics' label to be displayed on the X axis
+			// Retrieve the metrics' label to be displayed on the X axis
 			var genMetricsLabel = function (metrics) {
 				var metricLabels = [], cut = false;
 				for (i = 0; i < metrics.length; i++) {
@@ -172,7 +169,7 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 				return metricLabels;
 			};
 
-// Retrieve the metric values from the array of raw data
+			// Retrieve the metric values from the array of raw data
 			var getMetricsValues = function (tab) {
 				var metrics = [];
 				totalV = 0;
@@ -189,7 +186,6 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 			};
 
 //************************** Chart Implementation
-
 
 			var container1 = d3.select(this.domNode).select("div");
 
@@ -210,7 +206,6 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 					.style("postition", "relative");
 			}
 
-
 			var container2 = d3.select(this.domNode).select("div.maincontainer");
 
 			if (container2.empty()) {
@@ -219,20 +214,20 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 					.style("position", "absolute");
 			}
 
-
-// Get the metrics names
+			// Get the metrics names
 			var gridData = this.dataInterface;
 			var colHeaders = gridData.getColHeaders(0);
 			var metricsL = [];
 			for (var i = 0; i < colHeaders.headers.length; i++) {
 				metricsL[i] = colHeaders.getHeader(i).getName();
 			}
+			
 			if (!continuous)
 				metricsL.unshift("");// To create a spacing between the attributeName cycles
 			if (total)
 				metricsL.push("Total ");
 
-// Process the raw data into dataS to make the manipulation of the data easier while making the chart
+			// Process the raw data into dataS to make the manipulation of the data easier while making the chart
 			var countBars = 0, totalV = 0;// To count the number of bars to be displayed in the chart
 			var dataS = [];
 
@@ -248,30 +243,29 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 				});
 			}
 
-// Retrieve for each bar the value to which the bar should start and the actual value of the bar
+			// Retrieve for each bar the value to which the bar should start and the actual value of the bar
 			var borders = getBarBorders(dataS);
 
-// Get the max value of the metrics. It will be used to scale the Y coordinates.
+			// Get the max value of the metrics. It will be used to scale the Y coordinates.
 			var maxVal = 0;
 			maxVal = getMaxValue(borders);
 
-
-// Get the min value of the metrics. It will be used to scale the Y coordinates.
+			// Get the min value of the metrics. It will be used to scale the Y coordinates.
 			var minVal = 0;
 			minVal = getMinValue(borders);
 
 //************* Adapt the view with the size of the Visualization
 
-// Get the Y coordinate of a metric value
+			// Get the Y coordinate of a metric value
 			var toYCoord = function (y) {
 				return (y) * ( height / (maxVal + Math.abs(minVal)));
 			};
 
-
 			var zeroYPos = 0;
 			zeroYPos = height - toYCoord(Math.abs(minVal));
 			var offsetLeft = true;
-// If there is too much bars to be displayed directly, adapt the width of the chart and make the chart scrollable
+			
+			// If there is too much bars to be displayed directly, adapt the width of the chart and make the chart scrollable
 			if (countBars > max_number_bars_before_scrolling) {
 				container2.style("position", "relative");
 				offsetLeft = false;
@@ -281,11 +275,10 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 				width = total_width - margin.left - margin.right;
 			}
 
-
 			var xAttrWidth = width / dataS.length; // Get the width of a attributeName cycle
 			var xBarWidth = xAttrWidth / metricsL.length; //Get the width of a bar
 
-//If the width of the window is shrinking too much
+			//If the width of the window is shrinking too much
 			if (xBarWidth < 25) {
 				xBarWidth = 25;
 				xAttrWidth = xBarWidth * metricsL.length;
@@ -294,10 +287,9 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 				width = xAttrWidth * dataS.length;
 			}
 
-
 //************* Create the axis and the chart
 
-// Create the scale functions the chart
+			// Create the scale functions the chart
 			var x = d3.scale.ordinal()
 				.rangeRoundBands([0, width]);
 			x.domain(dataS.map(function (d) {
@@ -308,9 +300,7 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 				.range([height, 0]);
 			y.domain([minVal, maxVal]); // Use to scale the metric values to the Y coordinates
 
-// Create the svg and axis if it is not existing already in the visualization
-
-
+			// Create the svg and axis if it is not existing already in the visualization
 			var chart = d3.select(this.domNode.lastChild).select("svg");
 			var xAxis, yAxis;
 			if (chart.empty()) {
@@ -329,38 +319,35 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 					.append("svg:g")
 					.attr("transform", "translate(" + (offsetLeft ? (yaxiswidth + 10) : 1) + "," + margin.top + ")"); // Adding 10 to yaxiswidth to account for margin.
 
-
 				//Create X axis representing the values of the attributeName
 				xAxis = d3.svg.axis()
 					.scale(x)
 					.orient("bottom");
 
-
 				chart.append("g")
 					.attr("class", "x axis")
-					.attr("transform", "translate(0," + ( height + 80 ) + ")")
+					.attr("transform", "translate(0," + ( height ) + ")")
 					.call(xAxis)
 					.selectAll("text")
 					.attr("y", 12)
 					.attr("x", 0);
 
-
-				yAxis = d3.svg.axis()
-					.scale(y)
-					.orient("left")
-					.tickFormat(d3.format(".2s"));
+				//yAxis = d3.svg.axis()
+				//	.scale(y)
+				//	.orient("left")
+				//	.tickFormat(d3.format(".2s"));
 
 				//Create Y axis
-				ycontainer.append("g")
-					.attr("class", "y axis")
-					.attr("transform", "translate(" + 48 + "," + margin.top + ")")
-					.call(yAxis)
-					.append("text")
-					.attr("transform", "rotate(-90)")
-					.attr("y", 6)
-					.attr("dy", ".71em")
-					.style("text-anchor", "end")
-					.text(quantityName);
+				//ycontainer.append("g")
+				//	.attr("class", "y axis")
+				//	.attr("transform", "translate(" + 48 + "," + margin.top + ")")
+				//	.call(yAxis)
+				//	.append("text")
+				//	.attr("transform", "rotate(-90)")
+				//	.attr("y", 6)
+				//	.attr("dy", ".71em")
+				//	.style("text-anchor", "end")
+				//	.text(quantityName);
 
 				//Do grey horizontal line for more readability
 				if (lineFlag) {
@@ -375,10 +362,10 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 
 
 				// Create X axis representing the different metricsL
-				var metricLabels = genMetricsLabel(metricsL);// Get metricsL' labels in proper format (cut string if too long)
+				//var metricLabels = genMetricsLabel(metricsL);// Get metricsL' labels in proper format (cut string if too long)
 				var xAttr = d3.scale.ordinal()
 					.rangeRoundBands([0, xAttrWidth]);
-				xAttr.domain(metricLabels);
+				//xAttr.domain(metricLabels);
 				var xAttrAxis = d3.svg.axis()
 					.scale(xAttr)
 					.orient("bottom");
@@ -413,7 +400,7 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 			var bar = chart.selectAll(".bar")
 				.data(borders);
 
-//Adapt the format
+			//Adapt the format
 			d3.selectAll("text").style("font", VIformat.font);
 			d3.selectAll(".x.axis text").style("font-weight", "bold");
 			d3.selectAll(".x.axis.attributes text").style("font", "12px arial");
@@ -455,7 +442,7 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 						dataS[Math.floor(i / metricsL.length)].attribute.value + ", " + metricsL[i % metricsL.length]
 						+ " : [" + Math.round(d[0]) + " ; " + Math.round(d[1] + d[0]) + "]  -> " + Math.round(d[1]);
 					return tooltip;
-				});
+				});		
 
 			// Set the bar colors
 			bar.style("fill", function (d, i) {
@@ -497,14 +484,22 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 				});
 
 
-//For the visualization to start at the bottom of the scroll
+			//For the visualization to start at the bottom of the scroll
 			this.domNode.scrollTop = height;
 
-//IE SVG refresh bug: re-insert SVG node to update/redraw contents.
+			//IE SVG refresh bug: re-insert SVG node to update/redraw contents.
 			var svgNode = this.domNode.firstChild;
 			this.domNode.insertBefore(svgNode, svgNode);
-
-
+			
+			// Set the bar text
+			chart.selectAll("text.bar")
+				.data(gridData)
+				.enter().append("text")
+				.attr("class", "bar")
+				.attr("text-anchor", "middle")
+				.attr("x", function(d) { return x(d.letter); })
+				.attr("y", function(d) { return y(d.frequency) - 10; })
+				.text(function(d) { return d.frequency; });
 		}
 	})
 }());
