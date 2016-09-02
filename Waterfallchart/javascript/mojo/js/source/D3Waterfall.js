@@ -332,34 +332,34 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 					.attr("y", 12)
 					.attr("x", 0);
 
-				//yAxis = d3.svg.axis()
-				//	.scale(y)
-				//	.orient("left")
-				//	.tickFormat(d3.format(".2s"));
+				yAxis = d3.svg.axis()
+					.scale(y)
+					.orient("left")
+					.tickFormat(d3.format(".2s"));
 
 				//Create Y axis
-				//ycontainer.append("g")
-				//	.attr("class", "y axis")
-				//	.attr("transform", "translate(" + 48 + "," + margin.top + ")")
-				//	.call(yAxis)
-				//	.append("text")
-				//	.attr("transform", "rotate(-90)")
-				//	.attr("y", 6)
-				//	.attr("dy", ".71em")
-				//	.style("text-anchor", "end")
-				//	.text(quantityName);
+				ycontainer.append("g")
+					.attr("class", "y axis")
+					.attr("transform", "translate(" + 48 + "," + margin.top + ")")
+					.call(yAxis)
+					.append("text")
+					.attr("transform", "rotate(-90)")
+					.attr("y", 6)
+					.attr("dy", ".71em")
+					.style("text-anchor", "end")
+					.text(quantityName);
 
 				//Do grey horizontal line for more readability
 				if (lineFlag) {
 					chart.insert("g", ".grid")
 						.attr("class", "grid horizontal")
-						.call(d3.svg.axis().scale(y)
-							.orient("left")
-							.tickSize(-(width), 0, 0)
-							.tickFormat("")
-					);
+						.call(
+							d3.svg.axis().scale(y)
+								.orient("left")
+								.tickSize(-(width), 0, 0)
+								.tickFormat("")
+						);
 				}
-
 
 				// Create X axis representing the different metricsL
 				//var metricLabels = genMetricsLabel(metricsL);// Get metricsL' labels in proper format (cut string if too long)
@@ -370,28 +370,28 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 					.scale(xAttr)
 					.orient("bottom");
 
-
+/*
 				for (i = 0; i < dataS.length; i++) { // for each attributeName cycle, print the metric labels
 					var axisAttr = chart.append("g")
 						.attr("class", "x axis attributes continuous"); // display axis line with continuous mode to make the separation more clear
 					if (!metricOnly) {
 						axisAttr
-							.attr("transform", "translate(" + (xAttrWidth * i) + "," + (height + 1) + ")")
+							.attr("transform", "translate(" + (xAttrWidth * i) + "," + (height -(height /(maxVal + Math.abs(minVal)))) + ")")
 							.call(xAttrAxis)
 							.selectAll("text")
 							.attr("y", 0)
-							.attr("dx", -2)
+							.attr("dx", 0)
 							.attr("transform", "rotate(-55)")
 							.style("text-anchor", "end");
 					}else {
 						axisAttr
-							.attr("transform", "translate(" + (xAttrWidth*i ) + "," + (height + 1) + ")")
+							.attr("transform", "translate(" + (xAttrWidth*i ) + "," + (height -(height /(maxVal + Math.abs(minVal)))) + ")")
 							.call(xAttrAxis)
 							.selectAll("text")
 							.style("text-anchor", "middle");
 					}
 				}
-
+*/
 			}
 
 
@@ -405,7 +405,31 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 			d3.selectAll(".x.axis text").style("font-weight", "bold");
 			d3.selectAll(".x.axis.attributes text").style("font", "12px arial");
 
-			var newBar = bar.enter()
+			var newBar = bar.enter()	
+				.append("text")
+				.attr("class", "barText")
+				.attr("text-anchor", "middle")
+				.attr("x", function (d, i) { 
+					return xAttrWidth * i + (xBarWidth/2);
+				})
+				.attr("y", function (d, i) {
+					var v = 0;
+					if (d[1] > 0)
+						v += toYCoord(d[0] + d[1]);
+					else
+						v += toYCoord(d[0]);
+					return zeroYPos - v - 5;
+				})
+				.text(function (d, i) {
+					var infoText = d[1];
+					return infoText;
+				})
+				.attr("stroke","black")
+				.style("stroke-width", "0.5")
+				.attr("opacity","1.0");
+			
+			
+			bar.enter()
 				.append("rect")
 				.attr("class", "bar")
 				.attr("x", function (d, i) {
@@ -418,7 +442,7 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 				.attr("transform", function (d, i) {
 					return "translate(" + 0 + "," + (-height * (i + 1)) + ")";
 				})
-				.attr("opacity", "0.3")
+				.attr("opacity", "1.0")
 				.attr("y", function (d, i) {
 					var v = 0;
 					if (d[1] > 0)
@@ -442,7 +466,9 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 						dataS[Math.floor(i / metricsL.length)].attribute.value + ", " + metricsL[i % metricsL.length]
 						+ " : [" + Math.round(d[0]) + " ; " + Math.round(d[1] + d[0]) + "]  -> " + Math.round(d[1]);
 					return tooltip;
-				});		
+				});
+				
+			
 
 			// Set the bar colors
 			bar.style("fill", function (d, i) {
@@ -492,14 +518,8 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 			this.domNode.insertBefore(svgNode, svgNode);
 			
 			// Set the bar text
-			chart.selectAll("text.bar")
-				.data(gridData)
-				.enter().append("text")
-				.attr("class", "bar")
-				.attr("text-anchor", "middle")
-				.attr("x", function(d) { return x(d.letter); })
-				.attr("y", function(d) { return y(d.frequency) - 10; })
-				.text(function(d) { return d.frequency; });
+			
+				
 		}
 	})
 }());

@@ -1,15 +1,17 @@
 .custom-vis-layout.d3waterfall .bar:hover {
-    fill: brown;
+    fill: white;
 }
+
 .custom-vis-layout.d3waterfall .waterfall  {
     margin-left: 1px;
 
 }
 
 .custom-vis-layout.d3waterfall .waterfall text {
-    font: 11px arial;
+    font: 11px sans-serif;
     text-anchor: left;
-	fill: #777;
+	fill: #000;
+	opacity: 0.8;
 }
 
 .custom-vis-layout.d3waterfall .containerY  {
@@ -17,43 +19,22 @@
 
 }
 
-
 .custom-vis-layout.d3waterfall .containerY text {
-    font: 11px arial;
+    font: 11px sans-serif;
     text-anchor: left;
-	fill: #777;
+	fill: #000;
 }
-
-
 
 .custom-vis-layout.d3waterfall .axis text {
     font: 11px sans-serif;
 }
 
 .custom-vis-layout.d3waterfall  .axis path,
+.custom-vis-layout.d3waterfall .y.axis path,
+.custom-vis-layout.d3waterfall .x.axis line,
+.custom-vis-layout.d3waterfall .x.axis.attributes path,
 .custom-vis-layout.d3waterfall .axis line {
     display: none;
-    stroke: #777;
-    shape-rendering: crispEdges;
-}
-
-.custom-vis-layout.d3waterfall .x.axis text {
-    font-weight: bold;
-}
-
-.custom-vis-layout.d3waterfall .y.axis text {
-    font-weight: bold;
-}
-
-.custom-vis-layout.d3waterfall .x.axis path {
-    display: none;
-}
-
-.custom-vis-layout.d3waterfall .y.axis path {
-    display: inline;
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges; 
 }
 
 .custom-vis-layout.d3waterfall .x.axis.attributes.continuous path {
@@ -63,17 +44,8 @@
     shape-rendering: crispEdges; 
 }
 
-.custom-vis-layout.d3waterfall .x.axis.attributes path {
-    display: none;
-}
-
-.custom-vis-layout.d3waterfall .x.axis line {
-    display: none;
-}
-
 .custom-vis-layout.d3waterfall .tick line {
 	display: inline;
     stroke: #ddd;
     opacity: 0.9;
-
 }
