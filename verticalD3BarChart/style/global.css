@@ -1,0 +1,32 @@
+
+
+.bar--positive {
+  fill: steelblue;
+}
+
+.bar--negative {
+  fill: darkorange;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+
+#RwMenuModel_WEB-INFxmllayoutsblocksInsertDHTMLWidgetMenuLayoutxml   #mnuInsertWgverticalD3BarChart {
+    background:url(images/defaultimage_RWD.png) no-repeat scroll 4px;
+    padding: 3px 0pt 3px 14px;
+}
+
+#RwMenuModelEditor_WEB-INFxmllayoutsblocksInsertDHTMLWidgetMenuEditorLayoutxml #mnuInsertWgverticalD3BarChart {
+    background:url(images/defaultimage_RWD.png) no-repeat scroll 4px;
+    padding: 3px 0pt 3px 14px;
+}

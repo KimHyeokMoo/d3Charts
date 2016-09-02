@@ -1,0 +1,11 @@
+<visualizations>
+  <visualization-list name="ajax" show-in-web="true" view-mode="51">
+      <visualization desc="vertical Bar chart with D3js" id="verticalD3BarChart" is-mojo="true" scope="19" style-name="verticalD3BarChart" attribute-minimum="1" metric-minimum="1"/>
+  </visualization-list>
+  <visualization-list name="ipad" view-mode="71" show-in-web="false">
+    <visualization id="verticalD3BarChart" desc="vertical Bar chart with D3js" scope="19" projects="" style-name="verticalD3BarChart" attribute-minimum="1" metric-minimum="1"/>
+  </visualization-list>
+  <visualization-list name="iphone" view-mode="70" show-in-web="false">
+    <visualization id="verticalD3BarChart" desc="vertical Bar chart with D3js" scope="19" projects="" style-name="verticalD3BarChart" attribute-minimum="1" metric-minimum="1"/>
+  </visualization-list>
+</visualizations>
