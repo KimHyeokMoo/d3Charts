@@ -1,25 +1,33 @@
-
-
 .bar--positive {
-  fill: steelblue;
+  fill: rgb(140,180,0);
 }
 
 .bar--negative {
-  fill: darkorange;
+  fill: rgb(255,0,0);
 }
 
 .axis text {
   font: 10px sans-serif;
 }
 
+/*
 .axis path,
 .axis line {
-  fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
+}*/
+
+.y1.axis line,
+.y2.axis text,
+.y1.axis path{
+	display:none;
 }
 
-
+.y2.axis line{
+	display: inline;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
 
 #RwMenuModel_WEB-INFxmllayoutsblocksInsertDHTMLWidgetMenuLayoutxml   #mnuInsertWgverticalD3BarChart {
     background:url(images/defaultimage_RWD.png) no-repeat scroll 4px;
