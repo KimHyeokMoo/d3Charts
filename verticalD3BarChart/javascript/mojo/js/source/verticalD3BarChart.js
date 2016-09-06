@@ -37,7 +37,7 @@
                     this.domNode.removeChild(this.domNode.childNodes[0]);
                 }
 
-                var margin = {top: 10, right: 30, bottom: 50, left: 120},
+                var margin = {top: 10, right: 50, bottom: 50, left: 200},
                     width = parseInt(this.width,10) - margin.left - margin.right,
                     height = parseInt(this.height,10) - margin.top - margin.bottom;
                 var chart = d3.select(this.domNode).append("svg").attr("width", width + margin.left + margin.right)
@@ -58,8 +58,8 @@
 				 * @returns {String}
 				*/
 				var unescapeString = function(st) {
-						return st.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, "&").replace(/&#039;/g, "\'");
-					};
+					return st.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, "&").replace(/&#039;/g, "\'");
+				};
 					
                 /**
                  * Recursive function used to flatten raw data tree into an array. The output is appended to the 'data' array declared above.
@@ -98,6 +98,7 @@
 				x.domain(d3.extent(data, function(d) { 
 					return d.value; 
 				})).nice();
+				
 				y.domain(data.map(function(d) { 
 					return d.name; 
 				}));
@@ -146,7 +147,7 @@
 						};
 					})
 					.attr("y", function(d) { 
-						return y(d.name) + y.rangeBand()/3*2; 
+						return y(d.name) + y.rangeBand()/3*2-2; 
 					})
 					.text(function(d){ 
 						return d.value;
