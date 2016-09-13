@@ -332,23 +332,6 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 					.attr("y", 12)
 					.attr("x", 0);
 
-				yAxis = d3.svg.axis()
-					.scale(y)
-					.orient("left")
-					.tickFormat(d3.format(".2s"));
-
-				//Create Y axis
-				ycontainer.append("g")
-					.attr("class", "y axis")
-					.attr("transform", "translate(" + 48 + "," + margin.top + ")")
-					.call(yAxis)
-					.append("text")
-					.attr("transform", "rotate(-90)")
-					.attr("y", 6)
-					.attr("dy", ".71em")
-					.style("text-anchor", "end")
-					.text(quantityName);
-
 				//Do grey horizontal line for more readability
 				if (lineFlag) {
 					chart.insert("g", ".grid")
@@ -405,38 +388,59 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 			d3.selectAll(".x.axis text").style("font-weight", "bold");
 			d3.selectAll(".x.axis.attributes text").style("font", "12px arial");
 
-			var newBar = bar.enter()	
-				.append("text")
-				.attr("class", "barText")
-				.attr("text-anchor", "middle")
-				.attr("x", function (d, i) { 
-					return xAttrWidth * i + (xBarWidth/2);
-				})
-				.attr("y", function (d, i) {
-					var v = 0;
-					if (d[1] > 0)
-						v += toYCoord(d[0] + d[1]);
-					else
-						v += toYCoord(d[0]);
-					return zeroYPos - v - 5;
-				})
-				.text(function (d, i) {
-					var infoText = d[1];
-					return infoText;
-				})
-				.attr("stroke","black")
-				.style("stroke-width", "0.5")
-				.attr("opacity","1.0");
-			
+			if (continuous){
+				var newBar = bar.enter()	
+					.append("text")
+					.attr("class", "barText")
+					.attr("text-anchor", "middle")
+					.attr("x", function (d, i) { 
+						return xAttrWidth * i + (xBarWidth/2);
+					})
+					.attr("y", function (d, i) {
+						var v = 0;
+						if (d[1] > 0)
+							v += toYCoord(d[0] + d[1]);
+						else
+							v += toYCoord(d[0]);
+						return zeroYPos - v - 5;
+					})
+					.text(function (d, i) {
+						var infoText = d[1];
+						return infoText;
+					})
+					.attr("stroke","black")
+					.style("stroke-width", "0.5")
+					.attr("opacity","1.0");
+			}else{
+				var newBar = bar.enter()	
+					.append("text")
+					.attr("class", "barText")
+					.attr("text-anchor", "middle")
+					.attr("x", function (d, i) { 
+						return xBarWidth * i + (xBarWidth/2);
+					})
+					.attr("y", function (d, i) {
+						var v = 0;
+						if (d[1] > 0)
+							v += toYCoord(d[0] + d[1]);
+						else
+							v += toYCoord(d[0]);
+						return zeroYPos - v - 5;
+					})
+					.text(function (d, i) {
+						var infoText = d[1];
+						return infoText;
+					})
+					.attr("stroke","black")
+					.style("stroke-width", "0.5")
+					.attr("opacity","1.0");
+			}
 			
 			bar.enter()
 				.append("rect")
 				.attr("class", "bar")
 				.attr("x", function (d, i) {
-					if (!continuous)
-						return xBarWidth * i;
-					else
-						return xBarWidth * i;
+					return xBarWidth * i;
 				})
 				.attr("width", xBarWidth)
 				.attr("transform", function (d, i) {
