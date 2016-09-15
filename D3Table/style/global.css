@@ -1,0 +1,35 @@
+.d3Table table {
+ border-collapse: collapse;
+}
+
+.d3Rows tr {	
+ border-bottom: solid 1px #D3D3D3; 
+}
+
+.d3Table td {
+    height: 50px;
+    vertical-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#RwMenuModel_WEB-INFxmllayoutsblocksInsertDHTMLWidgetMenuLayoutxml   #mnuInsertWgD3Table {
+    background:url(images/defaultimage_RWD.png) no-repeat scroll 4px;
+    padding: 3px 0pt 3px 14px;
+}
+
+#RwMenuModelEditor_WEB-INFxmllayoutsblocksInsertDHTMLWidgetMenuEditorLayoutxml #mnuInsertWgD3Table {
+    background:url(images/defaultimage_RWD.png) no-repeat scroll 4px;
+    padding: 3px 0pt 3px 14px;
+}
