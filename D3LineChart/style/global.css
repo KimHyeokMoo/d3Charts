@@ -13,12 +13,8 @@
             shape-rendering: crispEdges;
 }
 .axis text {
-    font-family: sans-serif;
+    font-family: Lato;
     font-size: 12px;
-}
-
-.axis line{
-	display: none;
 }
 
 .dot {

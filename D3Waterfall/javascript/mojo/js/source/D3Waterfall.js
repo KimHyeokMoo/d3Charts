@@ -353,7 +353,7 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 					.scale(xAttr)
 					.orient("bottom");
 
-/*
+
 				for (i = 0; i < dataS.length; i++) { // for each attributeName cycle, print the metric labels
 					var axisAttr = chart.append("g")
 						.attr("class", "x axis attributes continuous"); // display axis line with continuous mode to make the separation more clear
@@ -374,7 +374,6 @@ mstrmojo.plugins.D3Waterfall.D3Waterfall = mstrmojo.declare(
 							.style("text-anchor", "middle");
 					}
 				}
-*/
 			}
 
 

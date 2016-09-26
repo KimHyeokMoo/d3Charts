@@ -1,0 +1,188 @@
+
+	.dummy {
+	}
+	.r-default {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		12pt;
+	}
+	.r-metricValue {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		TEXT-ALIGN: 		right;
+	}
+	.r-metricValue-odd {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		TEXT-ALIGN: 		right;
+	}
+	.r-metricValue-even {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		TEXT-ALIGN: 		right;
+	}
+	.r-subtotalValue {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		FONT-WEIGHT: 		bold;
+		TEXT-ALIGN: 		right;
+		VERTICAL-ALIGN: 		middle;
+		BORDER-BOTTOM: 		#FFFFFF 1pt solid;
+	}
+	.r-subtotalValue-odd {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		FONT-WEIGHT: 		bold;
+		TEXT-ALIGN: 		right;
+		VERTICAL-ALIGN: 		middle;
+		BORDER-BOTTOM: 		#FFFFFF 1pt solid;
+	}
+	.r-subtotalValue-even {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		FONT-WEIGHT: 		bold;
+		TEXT-ALIGN: 		right;
+		VERTICAL-ALIGN: 		middle;
+		BORDER-BOTTOM: 		#FFFFFF 1pt solid;
+	}
+	.r-rowHeader {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		TEXT-ALIGN: 		Left;
+		VERTICAL-ALIGN: 		middle;
+		BORDER-BOTTOM: 		#E6E6E6 1pt solid;
+	}
+	.r-rowHeader A:Link {
+		color: 		#000000;
+	}
+	.r-rowHeader-cg {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		BORDER-BOTTOM: 		#E6E6E6 1pt solid;
+	}
+	.r-rowHeader-odd {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		BORDER-BOTTOM: 		#E6E6E6 1pt solid;
+	}
+	.r-rowHeader-even {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		BORDER-BOTTOM: 		#E6E6E6 1pt solid;
+	}
+	.r-rowHeader-total {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		FONT-WEIGHT: 		bold;
+		TEXT-ALIGN: 		Left;
+		VERTICAL-ALIGN: 		middle;
+		BORDER-BOTTOM: 		#E6E6E6 1pt solid;
+	}
+	.r-rowHeader-total-cg {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		FONT-WEIGHT: 		bold;
+		BORDER-BOTTOM: 		#E6E6E6 1pt solid;
+	}
+	.r-rowHeader-total-odd {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		FONT-WEIGHT: 		bold;
+		BORDER-BOTTOM: 		#FFFFFF 1pt solid;
+	}
+	.r-rowHeader-total-even {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		FONT-WEIGHT: 		bold;
+		BORDER-BOTTOM: 		#ffffff 1pt solid;
+	}
+	.r-colHeader {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		FONT-WEIGHT: 		bold;
+		TEXT-ALIGN: 		center;
+		VERTICAL-ALIGN: 		bottom;
+		BORDER-BOTTOM: 		#E6E6E6 1pt solid;
+	}
+	.r-colHeader A:Link {
+		color: 		#000000;
+	}
+	.r-colHeader-total {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		FONT-WEIGHT: 		bold;
+		TEXT-ALIGN: 		center;
+		VERTICAL-ALIGN: 		bottom;
+		BORDER-BOTTOM: 		#E6E6E6 1pt solid;
+	}
+	.r-colHeader-total A:Link {
+		color: 		#000000;
+	}
+	.r-colTitle {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		TEXT-ALIGN: 		right;
+		VERTICAL-ALIGN: 		top;
+		border-bottom-style: 		solid;
+		border-bottom-width: 		1pt;
+		border-bottom-color: 		#E6E6E6;
+	}
+	.r-colTitle A:Link {
+		color: 		#000000;
+	}
+	.r-rowTitle {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		FONT-SIZE: 		0.83em;
+		FONT-FAMILY: 		Times New Roman,Courier,Serif;
+		FONT-WEIGHT: 		bold;
+		BORDER-BOTTOM: 		#C6C3C6 1pt solid;
+	}
+	.r-rowTitle A:Link {
+		color: 		#000000;
+	}
+	.r-layout-empty {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		BORDER-BOTTOM: 		#E6E6E6 1pt solid;
+	}
+	.r-colHeader-empty {
+		BACKGROUND-COLOR: 		#FFFFFF;
+		COLOR: 		#000000;
+		BORDER-BOTTOM: 		#E6E6E6 1pt solid;
+	}
+

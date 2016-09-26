@@ -33,9 +33,6 @@
             externalLibraries: [
                 {url: "//cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js"}
             ],
-            /**
-             * For more info on rendering a bar graph using D3, see http://bl.ocks.org/mbostock/3885304
-             */
             plot: function () {
                 if(this.domNode.childNodes.length===1){
                     this.domNode.removeChild(this.domNode.childNodes[0]);

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE StyleCatalog SYSTEM "styleCatalog.dtd">
+<StyleCatalog>
+  <Styles>
+    <Style name="ReportFrameLayoutStyle">
+      <Layouts>
+        <Layout><![CDATA[@GridLayoutTest1:/WEB-INF/xml/layouts/ReportFrameLayout.xml]]></Layout>
+      </Layouts>
+    </Style>
+    <Style description="Style: Display Report Grid in Classic Style" name="CustomOfReportGridStyleClassic" transform="ReportGridTransform">
+      <ActualParameters>
+        <ActualParameter name="useBuiltInFormat" type="4" value="false"/>
+        <ActualParameter name="cssFile" type="1" value="../plugins/GridLayoutTest1/style/ReportTransformGridClassic.css"/>
+        <ActualParameter name="cssPrefix" type="1" value="r-"/>
+        <ActualParameter name="contextMenus" type="1" value="/WEB-INF/xml/config/reportCellContextMenus.xml"/>
+      </ActualParameters>
+    </Style>
+  </Styles>
+</StyleCatalog>

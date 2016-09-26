@@ -1,9 +1,21 @@
-.bar--positive {
+.bar--positiveGreen {
   fill: rgb(140,180,0);
 }
 
-.bar--negative {
+.bar--negativeRed {
   fill: rgb(255,0,0);
+}
+
+.bar--black{
+  fill: rgb(0,0,0);
+}
+
+.bar--negativeGray{
+	fill: rgb(64,64,64);
+}
+
+.bar--positiveGray{
+	fill: rgb(191,191,191);
 }
 
 .axis text {

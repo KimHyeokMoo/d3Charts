@@ -41,7 +41,6 @@
 	}
 	function drawLineChart(domEle,datac){
 		domEle.innerHTML="";
-		//TO-DO implement D3.js linechart
 		
 			var data = datac;
 			var myWidth;
@@ -105,10 +104,14 @@
 			
 			xAxis = d3.svg.axis()
 				.scale(xScale);
-			
-			var yAxis = d3.svg.axis()
-				.scale(yScale)
-				.orient("left");
+				
+			var lineGen = d3.svg.line()
+					.x(function(d) {
+						return xScale(d.name);
+					})
+					.y(function(d) {
+						return yScale(d.value);
+					});
 				
 			if(data.length >= 50) {
 				vis.append("svg:g")
@@ -116,35 +119,21 @@
 					.attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
 					.call(xAxis)
 					.selectAll("text")
-							.attr("y", 0)
-							.attr("x", 9)
-							.attr("dy", ".35em")
-							.attr("transform", "rotate(90)")
-							.style("text-anchor", "start");
-				} else if(data.length >= 1 && data.length <= 49){
-					//alert("Innnnn");
-					vis.append("svg:g")
-						.attr("class", "x axis")
-						.attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
-						.call(xAxis);
-					
-				}
+					.attr("y", 0)
+					.attr("x", 9)
+					.attr("dy", ".35em")
+					.attr("transform", "rotate(90)")
+					.style("text-anchor", "start");
+			} else if(data.length >= 1 && data.length <= 49){
 				vis.append("svg:g")
-				.attr("class", "y axis")
-				.attr("transform", "translate(" + (MARGINS.left) + ",0)")
-				.call(yAxis);
-
-				var lineGen = d3.svg.line()
-					.x(function(d) {
-						return xScale(d.name);
-					})
-					.y(function(d) {
-						return yScale(d.value);
-					});
+					.attr("class", "x axis")
+					.attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+					.call(xAxis);
+			}
 
 				vis.append('svg:path')
 					.attr('d', lineGen(data))
-					.attr('stroke', 'green')
+					.attr('stroke', 'black')
 					.attr('stroke-width', 2)
 					.attr('fill', 'none');
 				
@@ -155,10 +144,10 @@
 					.attr("cx", lineGen.x())
 					.attr("cy", lineGen.y())
 					.attr("r", 2.0)
-					.on("mouseover", function (d) {
+					/*.on("mouseover", function (d) {
 						div.transition()
 							.duration(500)
-							.style("opacity", 1.0)
+							.style("opacity", 0.8)
 							.style("z-index",999);
 						div.html(d.name + "<br/>" + d.value)
 							.style("left", (d3.event.pageX) + "px")
@@ -169,7 +158,24 @@
 						div.html("");
 						div.transition()
 							.style("opacity", 0);
-					});
+					})*/;
+					
+				vis.selectAll(".bar")
+					.data(data)
+					.enter().append("text")
+					.attr("class","text")
+					.attr("text-anchor","middle")
+					.attr("x",lineGen.x())
+					.attr("y",function(d){
+							if (d.value < 0){
+								return yScale(d.value)+15;
+							} else {
+								return yScale(d.value)-5;
+							}
+					})
+					.text(function(d){
+						return d.value;
+					})
 	}
 	
 }());

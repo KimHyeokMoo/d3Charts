@@ -37,7 +37,7 @@
                     this.domNode.removeChild(this.domNode.childNodes[0]);
                 }
 
-                var margin = {top: 10, right: 50, bottom: 50, left: 200},
+                var margin = {top: 10, right: 50, bottom: 50, left: 50},
                     width = parseInt(this.width,10) - margin.left - margin.right,
                     height = parseInt(this.height,10) - margin.top - margin.bottom;
                 var chart = d3.select(this.domNode).append("svg").attr("width", width + margin.left + margin.right)
@@ -81,6 +81,7 @@
 			            });
 			        }
 			    };
+				
 
                 // Begin processing the raw data with the children of the root node
 				processRawData(rawData.children, "");
@@ -90,7 +91,7 @@
                 }));
 				
 				var x = d3.scale.linear()
-					.range([0, width]);
+					.range([100, width]);
 
 				var y = d3.scale.ordinal()
 					.rangeRoundBands([0, height], 0.1);
@@ -115,10 +116,36 @@
 					.tickSize(0)
 					.tickPadding(6);
 					
-				var bar = chart.selectAll(".bar").data(data);
-
+				var bar = chart.selectAll(".bar").data(data);				
+								
+				function checkNegative(){
+					for (i=0;i<data.length;i++){
+						if (data[i].value<0){
+							return true;
+						}
+					}
+					return false;
+				}
+				
+				function checkAbsoulte(){
+					return false;
+				}
+				
+				
 				bar.enter().append("rect")
-					.attr("class", function(d) { return "bar bar--" + (d.value < 0 ? "negative" : "positive"); })
+					.attr("class", function(d) { 
+						var boolNegative = checkNegative();
+						var boolAbsolute = checkAbsoulte();
+						
+						if(boolNegative){
+							if(boolAbsolute){
+								return "bar bar--" + (d.value < 0 ? "negativeGray" : "positiveGray");
+							}
+							return "bar bar--" + (d.value < 0 ? "negativeRed" : "positiveGreen");
+						}else{
+							return "bar bar--black";
+						}
+					})
 					.attr("x", function(d) { 
 						return x(Math.min(0, d.value)); 
 					})
